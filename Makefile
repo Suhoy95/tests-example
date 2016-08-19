@@ -6,6 +6,7 @@ CACHE = ./cache
 NODE_MODULES = ./node_modules
 NPM = /usr/bin/npm
 NODE = /usr/bin/node
+BABEL_NODE = ./node_modules/babel-cli/bin/babel-node.js
 WEBPACK = ./node_modules/webpack/bin/webpack.js
 ESLINT = ./node_modules/eslint/bin/eslint.js
 # JASMINE = ./node_modules/jasmine/bin/jasmine.js
@@ -15,13 +16,19 @@ ESLINT = ./node_modules/eslint/bin/eslint.js
 all: clean configure build bundle
 
 build: export NODE_ENV = production
-build: $(SRC)/*.js
+build: $(SRC)/*.js assets
 	cp $(SRC)/index.html $(OUT)/
 	$(WEBPACK) --optimize-minimize --optimize-dedupe --progress
 
-dev:
+dev: assets
 	cp $(SRC)/index.html $(OUT)/
 	$(WEBPACK) --progress -w
+
+server: server/*.js
+	$(BABEL_NODE) server/server.js
+
+assets:
+	mkdir -p assets
 
 clean:
 	rm -rf $(OUT) $(NODE_MODULES)
