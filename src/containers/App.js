@@ -4,21 +4,21 @@ import {Link} from "react-router";
 function App({children}) {
   return (
     <div>
-      <div className="header">
+      <div>
         <h1>TODO's</h1>
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
+        <ul>
+          <li><Link to="/">TODO List</Link></li>
+          <li><Link to="/archive">Archive</Link></li>
+        </ul>
       </div>
 
-      <div className="children">
-        {children}
-      </div>
+      {children}
     </div>
   );
 }
 
 App.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.element.isRequired,
 };
 
 export default App;
