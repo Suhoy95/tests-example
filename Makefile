@@ -11,7 +11,7 @@ WEBPACK = ./node_modules/webpack/bin/webpack.js
 ESLINT = ./node_modules/eslint/bin/eslint.js
 # JASMINE = ./node_modules/jasmine/bin/jasmine.js
 
-.PHONY: test clean all build prepare lint configure bundle
+.PHONY: test clean all build prepare lint configure bundle server
 
 all: clean configure build bundle
 
@@ -24,7 +24,7 @@ dev: assets
 	cp $(SRC)/index.html $(OUT)/
 	$(WEBPACK) --progress -w
 
-server: server/*.js
+server:
 	$(BABEL_NODE) server/server.js
 
 assets:

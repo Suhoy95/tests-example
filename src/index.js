@@ -1,5 +1,6 @@
 import "purecss/build/pure.css";
 import "font-awesome/css/font-awesome.css";
+import "./style.css";
 
 import React from "react";
 import {render} from "react-dom";
