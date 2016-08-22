@@ -9,9 +9,13 @@ NODE = /usr/bin/node
 BABEL_NODE = ./node_modules/babel-cli/bin/babel-node.js
 WEBPACK = ./node_modules/webpack/bin/webpack.js
 ESLINT = ./node_modules/eslint/bin/eslint.js
+
+# Tests
+MOCHA = ./node_modules/mocha/bin/mocha
+JEST = ./node_modules/jest-cli/bin/jest.js
 # JASMINE = ./node_modules/jasmine/bin/jasmine.js
 
-.PHONY: test clean all build prepare lint configure bundle server
+.PHONY: test clean all build prepare lint configure bundle server mocha jest
 
 all: clean configure build bundle
 
@@ -26,6 +30,12 @@ dev: assets
 
 server:
 	$(BABEL_NODE) server/server.js
+
+mocha:
+	$(MOCHA) -c --require babel-register mocha_test/* --reporter nyan
+
+jest:
+	$(JEST)
 
 assets:
 	mkdir -p assets
